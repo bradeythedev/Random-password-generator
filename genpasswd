@@ -1,0 +1,126 @@
+#!/usr/bin/python3
+
+import random
+import sys
+
+# Password string
+password = ""
+
+# Options
+passwdLength = 10
+includeInts = True
+includeLocs = True
+includeUpcs = True
+includeSpcs = True
+doPasswd = True
+
+# Array of integers, modify when needed and replace with original array when done
+intArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+#intArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# Array of lowercase letters, modify when needed and replace with original array when done
+locArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+#locArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+# Array of uppercase letters, modify when needed and replace with original array when done
+upcArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+#upcArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+# Array of special characters, modify when needed and replace with original array when done
+spcArray = ["!", "@", "#", "$", "%", "^", "&", "*", "-", "_", ".", ",", "?", "~"]
+#spcArray = ["!", "@", "#", "$", "%", "^", "&", "*", "-", "_", ".", ",", "?", "~"]
+
+# Help screen
+helpScreen = """--- GENPASSWD HELP ---
+genpasswd is a tool for creating randomised strings with an assortment of characters, written in Python. Because of this, it is highly customisable, by argv options and by modifying the script itself.
+
+--- Usage ---
+genpasswd [length] [-ilush]
+
+--- Options ---
+-i            Exclude integers from the password
+-l            Exclude lowercase letters from the password
+-u            Exclude uppercase letters from the password
+-s            Exclude special characters letters from the password
+-h | --help   Show the help screen
+
+--- Examples ---
+$ genpasswd
+> Created password 10 characters long:
+> Iq*QM.&dg$
+
+$ genpasswd -i
+> Created password 10 characters long:
+> oS*Uk^S*z?
+
+$ genpasswd 20
+> Created password 20 characters long:
+> C3Pi$3H%##nm1bNg~8S.
+
+$ genpasswd 36 -l -s
+> Created password 36 characters long:
+> 28L7UT403D6YU9PX197L036486V921HV3UQE
+"""
+
+# Bad usage screen
+badUsageScreen = """Option unknown
+Use "genpasswd -h" or "genpasswd --help" for help"""
+
+# Logic
+def help():
+    print(helpScreen)
+
+def badArg():
+    print(badUsageScreen)
+
+def getChar(array):
+    global password
+    if array == 0:
+        if includeInts:
+            password += str(intArray[random.randint(0, len(intArray) - 1)])
+    elif array == 1:
+        if includeLocs:
+            password += locArray[random.randint(0, len(locArray) - 1)]
+    elif array == 2:
+        if includeUpcs:
+            password += upcArray[random.randint(0, len(upcArray) - 1)]
+    else:
+        if includeSpcs:
+            password += spcArray[random.randint(0, len(spcArray) - 1)]
+
+def createPasswd():
+    global password
+    while len(password) < int(passwdLength):
+        currentArray = random.randint(0, 3)
+        getChar(currentArray)
+
+# Parse args
+if len(sys.argv) > 1:
+    for arg in sys.argv:
+        if arg != sys.argv[0]:
+            if arg.isalnum():
+                passwdLength = arg
+            elif arg == '-i':
+                includeInts = False
+            elif arg == '-l':
+                includeLocs = False
+            elif arg == '-u':
+                includeUpcs = False
+            elif arg == '-s':
+                includeSpcs = False
+            elif arg == '-h':
+                doPasswd = False
+                help()
+            elif arg == '--help':
+                doPasswd = False
+                help()
+            else:
+                doPasswd = False
+                badArg()
+
+# Create password
+if doPasswd == True:
+    createPasswd()
+    # Print password
+    print("Created password", passwdLength, "characters long:")
+    print(password)
