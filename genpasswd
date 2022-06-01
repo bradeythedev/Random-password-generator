@@ -3,6 +3,9 @@
 import random
 import sys
 
+# Program name
+progName = sys.argv[0]
+
 # Password string
 password = ""
 
@@ -35,7 +38,7 @@ helpScreen = """--- GENPASSWD HELP ---
 genpasswd is a tool for creating randomised strings with an assortment of characters, written in Python. Because of this, it is highly customisable, by argv options and by modifying the script itself.
 
 --- Usage ---
-genpasswd [length] [-ilush]
+{progName} [length] [-ilush]
 
 --- Options ---
 -i            Exclude integers from the password
@@ -45,26 +48,26 @@ genpasswd [length] [-ilush]
 -h | --help   Show the help screen
 
 --- Examples ---
-$ genpasswd
+$ {progName}
 > Created password 10 characters long:
 > Iq*QM.&dg$
 
-$ genpasswd -i
+$ {progName} -i
 > Created password 10 characters long:
 > oS*Uk^S*z?
 
-$ genpasswd 20
+$ {progName} 20
 > Created password 20 characters long:
 > C3Pi$3H%##nm1bNg~8S.
 
-$ genpasswd 36 -l -s
+$ {progName} 36 -l -s
 > Created password 36 characters long:
 > 28L7UT403D6YU9PX197L036486V921HV3UQE
-"""
+""".format(progName=progName)
 
 # Bad usage screen
 badUsageScreen = """Option unknown
-Use "genpasswd -h" or "genpasswd --help" for help"""
+Use "{progName} -h" or "{progName} --help" for help""".format(progName=progName)
 
 # Logic
 def help():
