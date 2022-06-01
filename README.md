@@ -7,11 +7,13 @@ genpasswd is a tool for creating randomised strings with an assortment of charac
 ```genpasswd [length] [-ilush]```
 
 ### Options
+```
 -i            Exclude integers from the password
 -l            Exclude lowercase letters from the password
 -u            Exclude uppercase letters from the password
 -s            Exclude special characters letters from the password
 -h | --help   Show the help screen
+```
 
 ### Examples
 ```
