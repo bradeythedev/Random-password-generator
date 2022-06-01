@@ -14,22 +14,26 @@ genpasswd is a tool for creating randomised strings with an assortment of charac
 -h | --help   Show the help screen
 
 ### Examples
-```$ genpasswd
+```
+$ genpasswd
 Created password 10 characters long:
-Iq*QM.&dg$```
-
-```$ genpasswd -i
+Iq*QM.&dg$
+```
+```
+$ genpasswd -i
 Created password 10 characters long:
-oS*Uk^S*z?```
-
-```$ genpasswd 20
+oS*Uk^S*z?
+```
+```
+$ genpasswd 20
 Created password 20 characters long:
-C3Pi$3H%##nm1bNg~8S.```
-
-```$ genpasswd 36 -l -s
+C3Pi$3H%##nm1bNg~8S.
+```
+```
+$ genpasswd 36 -l -s
 Created password 36 characters long:
-28L7UT403D6YU9PX197L036486V921HV3UQE```
-
+28L7UT403D6YU9PX197L036486V921HV3UQE
+```
 ## Install
 To install on most Unix-like operating systems, ensure python3 and git are installed.
 - First, `git clone https://github.com/bradeythedev/Random-password-generator/` or download 'genpasswd' from a release in the releases tab.
